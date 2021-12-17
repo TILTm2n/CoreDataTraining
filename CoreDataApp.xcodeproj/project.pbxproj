@@ -14,6 +14,7 @@
 		A3BAE029276CFB63008CD9C6 /* CoreDataApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A3BAE027276CFB63008CD9C6 /* CoreDataApp.xcdatamodeld */; };
 		A3BAE02B276CFB63008CD9C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A3BAE02A276CFB63008CD9C6 /* Assets.xcassets */; };
 		A3BAE02E276CFB63008CD9C6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A3BAE02C276CFB63008CD9C6 /* LaunchScreen.storyboard */; };
+		A3BAE037276D1F7E008CD9C6 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3BAE036276D1F7E008CD9C6 /* TableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		A3BAE02A276CFB63008CD9C6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A3BAE02D276CFB63008CD9C6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A3BAE02F276CFB63008CD9C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A3BAE036276D1F7E008CD9C6 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,9 +60,9 @@
 		A3BAE01D276CFB63008CD9C6 /* CoreDataApp */ = {
 			isa = PBXGroup;
 			children = (
+				A3BAE035276D1F58008CD9C6 /* Controllers */,
 				A3BAE01E276CFB63008CD9C6 /* AppDelegate.swift */,
 				A3BAE020276CFB63008CD9C6 /* SceneDelegate.swift */,
-				A3BAE022276CFB63008CD9C6 /* ViewController.swift */,
 				A3BAE024276CFB63008CD9C6 /* Main.storyboard */,
 				A3BAE02A276CFB63008CD9C6 /* Assets.xcassets */,
 				A3BAE02C276CFB63008CD9C6 /* LaunchScreen.storyboard */,
@@ -68,6 +70,15 @@
 				A3BAE027276CFB63008CD9C6 /* CoreDataApp.xcdatamodeld */,
 			);
 			path = CoreDataApp;
+			sourceTree = "<group>";
+		};
+		A3BAE035276D1F58008CD9C6 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				A3BAE022276CFB63008CD9C6 /* ViewController.swift */,
+				A3BAE036276D1F7E008CD9C6 /* TableViewController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -144,6 +155,7 @@
 				A3BAE029276CFB63008CD9C6 /* CoreDataApp.xcdatamodeld in Sources */,
 				A3BAE023276CFB63008CD9C6 /* ViewController.swift in Sources */,
 				A3BAE01F276CFB63008CD9C6 /* AppDelegate.swift in Sources */,
+				A3BAE037276D1F7E008CD9C6 /* TableViewController.swift in Sources */,
 				A3BAE021276CFB63008CD9C6 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
