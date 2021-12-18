@@ -64,7 +64,13 @@
                             <outlet property="delegate" destination="Raw-UG-tFz" id="MTo-ci-oZw"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Companies" id="v06-xU-Zfa"/>
+                    <navigationItem key="navigationItem" title="Companies" id="v06-xU-Zfa">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="fUQ-7W-NzW">
+                            <connections>
+                                <action selector="addButtonPressed:" destination="Raw-UG-tFz" id="kFu-LB-zFY"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MFG-UP-gOc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

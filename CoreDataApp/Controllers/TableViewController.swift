@@ -6,15 +6,23 @@
 //
 
 import UIKit
+import CoreData
 
 class TableViewController: UITableViewController {
 
-    var models: [String] = []
+    var models: [Company] = []
+    
+    lazy var persistentContainer: NSPersistentContainer? = {
+        
+        guard let delegate = UIApplication.shared.delegate as? AppDelegate else {return nil}
+        
+        return delegate.persistentContainer
+        
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        models.append("Some1")
-        models.append("Some2")
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -22,6 +30,29 @@ class TableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
+    
+    // MARK: - Custom methods
+    
+    @IBAction func addButtonPressed(_ sender: Any) {
+        
+    }
+    
+    func saveNewModel(){
+        guard let context = persistentContainer?.viewContext else {return}
+        
+        let model = Company(context: context)
+        model.name = "Custom Name"
+        model.age = Int16(models.count)
+        
+        do{
+            try context.save()
+        }
+        catch let error{
+            print("error -> \(error)")
+        }
+        
+    }
+    
 
     // MARK: - Table view data source
 
@@ -39,7 +70,7 @@ class TableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
 
-        cell.textLabel?.text = models[indexPath.row]
+        //cell.textLabel?.text = models[indexPath.row]
 
         return cell
     }
