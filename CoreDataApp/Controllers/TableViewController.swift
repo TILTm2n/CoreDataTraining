@@ -23,7 +23,7 @@ class TableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        fetchModels()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -35,6 +35,14 @@ class TableViewController: UITableViewController {
     
     @IBAction func addButtonPressed(_ sender: Any) {
         saveNewModel()
+        tableView.reloadData()
+    }
+    
+    func fetchModels(){
+        guard let context = persistentContainer?.viewContext else {return}
+        
+        //можно насильно вытащить без do catch если уверен что ошибки не будет, не знаю зачем фетч нужен
+        models = try! context.fetch(Company.fetchRequest()) as! [Company]
         tableView.reloadData()
     }
     
@@ -52,6 +60,27 @@ class TableViewController: UITableViewController {
         catch let error{
             print("error -> \(error)")
         }
+        
+    }
+    
+    func removeModel(at indexPath: IndexPath){
+        guard let context = persistentContainer?.viewContext else {return}
+        //определяем модельку которую будем удалять
+        let model = models[indexPath.row]
+        //удаляем из контекста
+        context.delete(model)
+        
+        do{
+            //удаляем из массива моделей
+            models.remove(at: indexPath.row)
+            //пытаемя сохранить удаление в БД
+            try context.save()
+        }//если что-то пошло не так выводим ошибку
+        catch let error{
+            print("error -> \(error)")
+        }
+        //и за тем удаляем строку из таблицы
+        tableView.deleteRows(at: [indexPath], with: .fade)
         
     }
     
@@ -79,26 +108,22 @@ class TableViewController: UITableViewController {
         return cell
     }
     
-
-    /*
-    // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
         return true
     }
-    */
+    
 
-    /*
+    
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
+            removeModel(at: indexPath)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
     }
-    */
+    
 
     /*
     // Override to support rearranging the table view.
