@@ -34,7 +34,8 @@ class TableViewController: UITableViewController {
     // MARK: - Custom methods
     
     @IBAction func addButtonPressed(_ sender: Any) {
-        
+        saveNewModel()
+        tableView.reloadData()
     }
     
     func saveNewModel(){
@@ -45,6 +46,7 @@ class TableViewController: UITableViewController {
         model.age = Int16(models.count)
         
         do{
+            models.append(model)
             try context.save()
         }
         catch let error{
@@ -70,7 +72,9 @@ class TableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
 
-        //cell.textLabel?.text = models[indexPath.row]
+        let model = models[indexPath.row]
+        cell.textLabel?.text = model.name
+        cell.detailTextLabel?.text = String(model.age)
 
         return cell
     }
