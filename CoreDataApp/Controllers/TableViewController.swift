@@ -23,7 +23,8 @@ class TableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        fetchModels()
+        //fetchModels()
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -84,6 +85,25 @@ class TableViewController: UITableViewController {
         
     }
     
+    func update(with indexPath: IndexPath){
+        guard let context = persistentContainer?.viewContext else {return}
+        
+        let model = models[indexPath.row]
+        
+        model.name = "Selected model"
+        
+        tableView.reloadRows(at: [indexPath], with: .fade)
+        
+        do{
+            models[indexPath.row] = model
+            try context.save()
+        }
+        catch let error{
+            print("error -> \(error)")
+        }
+
+    }
+    
 
     // MARK: - Table view data source
 
@@ -122,6 +142,10 @@ class TableViewController: UITableViewController {
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        update(with: indexPath)
     }
     
 
